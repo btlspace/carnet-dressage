@@ -1,0 +1,321 @@
+/* ===========================================
+   STYLES PAGE BIENVENUE / ONBOARDING
+   =========================================== */
+
+.welcome-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.welcome-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Indicateur d'étapes */
+.steps-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 30px;
+}
+
+.step-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.step-dot.active {
+    background: white;
+    color: #667eea;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.step-line {
+    width: 40px;
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+}
+
+/* Contenu de l'étape */
+.step-content {
+    background: white;
+    border-radius: 24px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.step-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.step-content h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+.step-description {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Input large pour le nom */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-large {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.input-large:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* Liste d'items éditable */
+.items-edit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.item-row {
+    display: flex;
+    gap: 8px;
+}
+
+.item-row input {
+    flex: 1;
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.item-row input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn-remove-item {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    background: #fee2e2;
+    color: #ef4444;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.btn-remove-item:hover {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-add-row {
+    padding: 12px;
+    background: #f0fdf4;
+    color: #10b981;
+    border: 2px dashed #86efac;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-add-row:hover {
+    background: #dcfce7;
+    border-color: #10b981;
+}
+
+/* Actions des étapes */
+.step-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-prev, .btn-next, .btn-finish {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-prev {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.btn-prev:hover {
+    background: #e2e8f0;
+}
+
+.btn-next {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-finish {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.btn-finish:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Options alternatives (import, démo) */
+.welcome-options {
+    margin-top: 25px;
+}
+
+.option-divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.option-divider::before,
+.option-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+}
+
+.option-divider span {
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.option-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-option {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-option:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.5);
+}
+
+.btn-option:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Option passer */
+.skip-setup {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.skip-setup button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.2s;
+}
+
+.skip-setup button:hover {
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .welcome-page {
+        padding: 15px;
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+    
+    .step-content {
+        padding: 25px 20px;
+    }
+    
+    .step-icon {
+        font-size: 50px;
+    }
+    
+    .step-content h1 {
+        font-size: 20px;
+    }
+    
+    .items-edit-list {
+        max-height: 200px;
+    }
+}

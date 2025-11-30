@@ -1,0 +1,1098 @@
+/* Style global PWA Carnet de Dressage */
+:root {
+    --recherche-primary: #f093fb;
+    --recherche-secondary: #f5576c;
+    --recherche-light: #ffc6d3;
+    --recherche-bg: #fff5f7;
+    --bg-main: #e0e0e0;
+    --bg-light: #f8f9fa;
+    --text-dark: #2c3e50;
+    --border-light: #e0e0e0;
+    --border-medium: #ced4da;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root React doit aussi être flex pour propager le layout */
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    flex: 1;
+}
+
+html {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed; /* Dégradé fixe pour cohérence */
+    overflow-x: hidden;
+    min-height: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: transparent;
+    padding: 60px 0 0;
+    margin: 0;
+    font-size: 12px;
+    overflow-x: hidden;
+    max-width: 100vw;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar fixe en haut */
+.navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-save {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-save:hover {
+    background: #229954;
+}
+
+.btn-print {
+    background: #2c3e50;
+    color: white;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #2c3e50;
+}
+
+/* Page A4 */
+.page {
+    background: #fefefe;
+    width: 210mm;
+    max-width: 100%;
+    min-height: 297mm;
+    margin: 0 auto 20px;
+    padding: 5mm 8mm;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    position: relative;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+/* Footer discret en bas de page - filigrane élégant */
+.page-footer {
+    position: absolute;
+    bottom: 3mm;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 9px;
+    color: #d0d0d0;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.page-footer::before {
+    content: '🐕 Carnet de Dressage — ';
+}
+
+/* Header formulaire */
+.header {
+    color: white;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.header-recherche {
+    background: #f5576c;
+    box-shadow: 0 2px 6px rgba(245, 87, 108, 0.3);
+}
+
+/* Header obéissance - gradient violet legacy */
+.header-obeissance {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+}
+
+/* Titres de section obéissance */
+.page.obeissance .section-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Sélecteur de semaine (mode édition) */
+.week-info {
+    background: #f0f3ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #c7d2fe;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.week-info .week-display {
+    font-weight: bold;
+    color: #667eea;
+    flex: 1;
+}
+
+.week-info .week-selector-input {
+    padding: 8px;
+    border: 1px solid #c7d2fe;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Affichage semaine (mode vue) - style de base */
+.week-info-display {
+    background: #f0f3ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #c7d2fe;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+/* Semaine obéissance (mode vue) - couleurs legacy */
+.week-info-display.obeissance {
+    background: #ede9fe;
+    border-color: #c4b5fd;
+    color: #2c3e50;
+}
+
+.header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    line-height: 1.2;
+}
+
+.header h2 {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.95;
+    line-height: 1.2;
+}
+
+/* Info rows */
+.info-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    background: var(--recherche-bg);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--recherche-light);
+}
+
+.info-item {
+    flex: 1;
+    min-width: 140px;
+}
+
+.info-item > label:first-child {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 2px;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Inputs - taille naturelle */
+input[type="date"],
+input[type="number"],
+input[type="text"] {
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 2px 0;
+    margin: 0;
+    font-size: 12px;
+    width: 100%;
+    font-family: inherit;
+    background: transparent;
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+/* Bordure visible uniquement en mode édition (quand pas readonly) */
+input[type="date"]:not([readonly]),
+input[type="number"]:not([readonly]),
+input[type="text"]:not([readonly]) {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+input[type="date"]:focus,
+input[type="number"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: #f5576c;
+}
+
+select {
+    padding: 2px 4px;
+    margin: 0;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    font-size: 12px;
+    width: 100%;
+    font-family: inherit;
+    background: transparent;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select:not([disabled]) {
+    border: 1px solid #e0e0e0;
+    background: white;
+}
+
+/* Texte en mode visualisation - padding pour compenser l'absence d'input */
+.value-text {
+    display: block;
+    padding: 2px 0;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    min-height: 21px;
+    box-sizing: border-box;
+}
+
+/* Checkboxes */
+.checkbox-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    min-height: 17px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 6px;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.section-title {
+    background: #f5576c;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+/* Description box - hauteur FIXE avec lignes de guidage */
+.description-box {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 70px;
+    padding: 6px;
+    font-size: 12px;
+    line-height: 18px;
+    background: white;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Lignes de guidage pour écriture papier - ligne-height 18px = 17px + 1px ligne */
+.description-box::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 17px,
+        #e8e8e8 17px,
+        #e8e8e8 18px
+    );
+    background-size: 100% 18px;
+    pointer-events: none;
+}
+
+/* Contenu texte en mode visualisation */
+.description-box .text-content {
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 12px;
+    line-height: 18px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Textarea - remplit tout l'espace disponible */
+.description-box textarea {
+    width: 100%;
+    height: calc(100% - 2px);
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 18px;
+    resize: none;
+    background: transparent;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Coches noires pour les checkboxes */
+input[type="checkbox"] {
+    accent-color: black;
+}
+
+/* Lignes alternées dans le tableau - zebra striping */
+table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f0f4f8;
+}
+
+/* S'assurer que les couleurs alternées sont visibles en impression */
+@media print {
+    table tbody tr:nth-child(even) {
+        background-color: #f0f4f8 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}
+
+/* Style pour les numéros de ligne */
+.row-number {
+    text-align: center;
+    font-weight: 600;
+    color: #666;
+}
+
+/* Tables - style moderne */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+table th {
+    background: linear-gradient(135deg, #f5576c 0%, #e04555 100%);
+    color: white;
+    padding: 8px 6px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border: none;
+}
+
+table th:first-child {
+    border-top-left-radius: 6px;
+}
+
+table th:last-child {
+    border-top-right-radius: 6px;
+}
+
+table td {
+    padding: 3px 4px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+    background: white;
+    height: 24px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 6px;
+}
+
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 6px;
+}
+
+/* Inputs dans les tables - taille naturelle */
+table input[type="text"],
+table input[type="number"] {
+    border: none;
+    border-bottom: 1px solid transparent;
+    padding: 2px 0;
+    margin: 0;
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.4;
+    background: transparent;
+}
+
+table input[type="text"]:not([readonly]),
+table input[type="number"]:not([readonly]) {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table select {
+    border: 1px solid transparent;
+    padding: 2px;
+    margin: 0;
+    font-size: 12px;
+    width: 100%;
+    background: transparent;
+}
+
+table select:not([disabled]) {
+    border: 1px solid #e0e0e0;
+    background: white;
+}
+
+/* Texte dans les cellules de tableau (mode vue) - padding identique aux inputs */
+table .cell-text {
+    display: block;
+    padding: 2px 0;
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Checkboxes de hauteur dans tableau */
+.height-checkboxes {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+.height-checkboxes label {
+    margin: 0 !important;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.height-checkboxes input[type="checkbox"],
+.height-checkboxes input[type="radio"] {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Section Bilan plus grande - hauteur FIXE */
+.section-bilan {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.bilan-box {
+    flex: 1;
+    min-height: 180px;
+    height: 180px;
+    overflow: hidden;
+}
+
+.bilan-box .text-content {
+    min-height: 168px;
+    height: 168px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.bilan-box textarea {
+    height: calc(100% - 2px);
+    min-height: 168px;
+    resize: none;
+    overflow: hidden;
+}
+
+/* Section Séances obéissance */
+.seance-box {
+    min-height: 120px;
+    height: 120px;
+}
+
+/* Lignes de guidage pour seance-box - même principe que description-box */
+.seance-box::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 17px,
+        #ede9fe 17px,
+        #ede9fe 18px
+    );
+    background-size: 100% 18px;
+    pointer-events: none;
+}
+
+.seance-box .text-content {
+    min-height: 108px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.seance-box textarea {
+    height: calc(100% - 2px);
+    min-height: 108px;
+    resize: none;
+}
+
+/* Print-only */
+.date-print-only {
+    display: none;
+    font-size: 13px;
+    padding: 3px 0;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(400px); opacity: 0; }
+}
+
+/* Responsive Mobile (Screen only, pas pour impression) */
+@media screen and (max-width: 768px) {
+    html {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+        min-height: 100dvh; /* dynamic viewport height - meilleur sur mobile */
+    }
+    
+    body {
+        padding: 60px 0 0;
+        font-size: 14px;
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+        min-height: 100dvh;
+    }
+    
+    .page {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 10px !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Headers plus grands sur mobile */
+    .header h1 {
+        font-size: 20px;
+    }
+    
+    .header h2 {
+        font-size: 16px;
+    }
+    
+    /* Info rows en colonnes sur mobile */
+    .info-row {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .info-item {
+        min-width: 100%;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .section {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .info-item label {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    
+    /* Inputs plus grands sur mobile */
+    input[type="date"],
+    input[type="number"],
+    input[type="text"],
+    select {
+        font-size: 16px;
+        padding: 10px 8px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        max-width: 100%;
+    }
+    
+    /* Checkboxes et radios plus grands pour le tactile */
+    input[type="checkbox"],
+    input[type="radio"] {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        min-height: 24px;
+    }
+    
+    .checkbox-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .checkbox-item {
+        font-size: 15px;
+        gap: 10px;
+        padding: 8px 0;
+    }
+    
+    .checkbox-item label {
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    /* Sections plus aérées */
+    .section {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .section-title {
+        font-size: 16px;
+        padding: 8px 12px;
+        margin-bottom: 10px;
+    }
+    
+    /* Textarea plus grand */
+    textarea {
+        font-size: 16px;
+        padding: 12px;
+        min-height: 120px;
+    }
+    
+    .description-box {
+        min-height: 120px;
+        font-size: 14px;
+        padding: 12px;
+    }
+    
+    /* Tables responsive */
+    table {
+        font-size: 12px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    table th,
+    table td {
+        padding: 6px 4px;
+        font-size: 12px;
+    }
+    
+    table input[type="text"],
+    table input[type="number"],
+    table select {
+        font-size: 14px;
+        padding: 6px 4px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        min-width: 60px;
+    }
+    
+    /* Height checkboxes */
+    .height-checkboxes input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .height-checkboxes label {
+        font-size: 18px;
+    }
+}
+
+/* Boutons d'action en bas des formulaires */
+.form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px auto 20px;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.btn-action {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.btn-action.btn-save {
+    background: #10b981;
+    color: white;
+}
+
+.btn-action.btn-save:hover {
+    background: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-action.btn-print {
+    background: #6366f1;
+    color: white;
+}
+
+.btn-action.btn-print:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+}
+
+.btn-action.btn-delete {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-action.btn-delete:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+/* Barre d'actions au-dessus de la fiche */
+.fiche-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    max-width: 210mm;
+    margin: 20px auto 15px;
+    padding: 0 5px;
+}
+
+.fiche-toolbar .toolbar-left {
+    display: flex;
+    gap: 10px;
+}
+
+.fiche-toolbar .toolbar-center {
+    display: flex;
+    gap: 10px;
+}
+
+/* Titre dans la toolbar */
+.fiche-toolbar .toolbar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.fiche-toolbar .toolbar-title.recherche {
+    background: rgba(245, 87, 108, 0.8);
+}
+
+.fiche-toolbar .toolbar-title.obeissance {
+    background: rgba(102, 126, 234, 0.8);
+}
+
+.fiche-toolbar .toolbar-title.divers {
+    background: rgba(16, 185, 129, 0.8);
+}
+
+.fiche-toolbar .toolbar-right {
+    display: flex;
+    gap: 10px;
+}
+
+.fiche-toolbar .toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.fiche-toolbar .toolbar-btn.btn-back,
+.fiche-toolbar .toolbar-btn.btn-cancel {
+    background: white;
+    color: #64748b;
+}
+
+.fiche-toolbar .toolbar-btn.btn-back:hover,
+.fiche-toolbar .toolbar-btn.btn-cancel:hover {
+    background: #f1f5f9;
+    color: #475569;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.fiche-toolbar .toolbar-btn.btn-save {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.fiche-toolbar .toolbar-btn.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.fiche-toolbar .toolbar-btn.btn-print {
+    background: white;
+    color: #6366f1;
+}
+
+.fiche-toolbar .toolbar-btn.btn-print:hover {
+    background: #f1f5f9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.fiche-toolbar .toolbar-btn.btn-edit {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.fiche-toolbar .toolbar-btn.btn-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+@media (max-width: 600px) {
+    .fiche-toolbar {
+        padding: 0 10px;
+        gap: 8px;
+    }
+    
+    .fiche-toolbar .toolbar-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-actions {
+        margin: 20px 10px;
+        padding: 16px;
+        gap: 12px;
+    }
+    
+    .btn-action {
+        flex: 1 1 calc(50% - 6px);
+        min-width: 0;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+    
+    .btn-action.btn-delete {
+        flex: 1 1 100%;
+    }
+}
+
+/* Print styles */
+@page {
+    size: A4 portrait;
+    margin: 0;
+}
+
+@media print {
+    html, body { 
+        margin: 0 !important; 
+        padding: 0 !important;
+        background: white !important;
+    }
+    
+    .page { 
+        margin: 0 !important;
+        padding: 5mm 8mm !important;
+        box-shadow: none !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        overflow: hidden !important;
+        page-break-after: auto;
+        page-break-inside: avoid;
+    }
+    
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .navbar-container,
+    .form-actions,
+    .fiche-toolbar {
+        display: none !important;
+    }
+    
+    input, textarea, select {
+        border: none !important;
+        background: transparent !important;
+    }
+    
+    input[type="date"] {
+        display: none !important;
+    }
+    
+    .date-print-only {
+        display: block !important;
+    }
+    
+    input[type="radio"] {
+        display: none !important;
+    }
+    
+    input[type="checkbox"] {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .app-footer {
+        display: none !important;
+    }
+}
+
+/* Footer discret - se fond avec le background */
+.app-footer {
+    text-align: center;
+    padding: 30px 20px 20px;
+    margin-top: 40px;
+}
+
+.app-footer .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.app-footer .footer-icon {
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+.app-footer a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.app-footer a:hover {
+    color: rgba(255, 255, 255, 0.9);
+}

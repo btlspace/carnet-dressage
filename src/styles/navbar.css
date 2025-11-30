@@ -1,0 +1,242 @@
+/* Navbar Application - Styles centralisés */
+
+.app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    height: 64px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.app-logo {
+    font-size: 36px;
+    line-height: 1;
+}
+
+.app-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.dog-name {
+    font-size: 13px;
+    color: #667eea;
+}
+
+/* Menu hamburger - visible uniquement sur mobile */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: auto;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #667eea;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Menu navigation - Desktop */
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    background: #f0f0f0;
+    color: #667eea;
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.nav-icon {
+    font-size: 18px;
+}
+
+.nav-text {
+    display: inline;
+}
+
+/* Badge "+" vert pour les liens de création */
+.nav-badge-new {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: #10b981;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 50%;
+    margin-left: 4px;
+    padding-bottom: 1px;
+}
+
+.nav-link.active .nav-badge-new {
+    background: white;
+    color: #10b981;
+}
+
+/* Séparateur vertical sur desktop */
+.nav-separator {
+    width: 1px;
+    height: 28px;
+    background: #dee2e6;
+    margin: 0 12px;
+}
+
+/* Titre de groupe - masqué sur desktop */
+.nav-group-title {
+    display: none;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .app-navbar {
+        height: 56px;
+        padding: 8px 15px;
+    }
+    
+    .app-logo {
+        font-size: 28px;
+    }
+    
+    .app-title {
+        font-size: 14px;
+    }
+    
+    .dog-name {
+        font-size: 11px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar-menu {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-menu.active {
+        transform: translateX(0);
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 0;
+        padding: 10px;
+    }
+
+    .nav-link {
+        padding: 14px 16px;
+        border-radius: 8px;
+        font-size: 15px;
+    }
+    
+    .nav-icon {
+        font-size: 18px;
+    }
+    
+    /* Afficher séparateurs et titres sur mobile */
+    .nav-separator {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background: #e9ecef;
+        margin: 10px 0;
+    }
+
+    .nav-group-title {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 8px 16px 4px;
+    }
+}
+
+/* Mode impression - masquer la navbar */
+@media print {
+    .app-navbar {
+        display: none !important;
+    }
+}

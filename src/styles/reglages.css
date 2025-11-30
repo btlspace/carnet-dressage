@@ -1,0 +1,467 @@
+/* ===========================================
+   STYLES PAGE RÉGLAGES - TUILES + ÉDITION INLINE
+   =========================================== */
+
+.reglages-page {
+    background: transparent;
+    flex: 1;
+    padding: 20px 15px;
+}
+
+.reglages-page .container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header compact */
+.reglages-page .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    margin-bottom: 12px;
+    padding: 0;
+}
+
+.reglages-page .header .icon-main {
+    font-size: 28px;
+}
+
+.reglages-page .header h1 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.reglages-page .header p {
+    display: none;
+}
+
+/* Section titre */
+.reglages-page .section-title {
+    color: rgba(255,255,255,0.9);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    background: none;
+}
+
+/* Grille de tuiles 2x2 */
+.settings-categories {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.category-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+}
+
+.category-card.chien::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.category-card.substances::before { background: linear-gradient(90deg, #ec4899, #f472b6); }
+.category-card.poseurs::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.category-card.backup::before { background: linear-gradient(90deg, #10b981, #34d399); }
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.category-card.active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.category-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-icon {
+    font-size: 32px;
+}
+
+.category-info h3 {
+    font-size: 14px;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 600;
+}
+
+.category-info p {
+    font-size: 11px;
+    color: #94a3b8;
+    margin: 3px 0 0 0;
+}
+
+.category-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+/* Panel de paramètres */
+.settings-panel {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    display: none;
+    animation: slideUp 0.3s ease;
+    margin-top: 15px;
+}
+
+.settings-panel.active {
+    display: block;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.panel-icon {
+    font-size: 28px;
+}
+
+.panel-header h2 {
+    font-size: 18px;
+    color: #2c3e50;
+    flex: 1;
+    margin: 0;
+    font-weight: 600;
+}
+
+.btn-close-panel {
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-close-panel:hover {
+    background: #e2e8f0;
+    color: #ef4444;
+}
+
+/* Formulaires */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Liste d'items en TAGS/CHIPS - style ordre de passage */
+.items-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 8px;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 12px;
+    min-height: 50px;
+    /* Pas de max-height pour s'adapter au contenu */
+}
+
+.list-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 12px 8px 14px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+    flex-shrink: 0;
+    margin-bottom: 2px;
+}
+
+.list-item input {
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 500;
+    background: transparent;
+    color: white;
+    width: auto;
+    min-width: 60px;
+    max-width: 120px;
+}
+
+.list-item input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.list-item input:focus {
+    outline: none;
+}
+
+.btn-remove {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 2px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-remove:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+/* Zone des actions du panel (Ajouter + Enregistrer) */
+.panel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-add-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: white;
+    color: #10b981;
+    padding: 10px 16px;
+    border: 2px dashed #86efac;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-add-item:hover {
+    background: #dcfce7;
+    border-color: #10b981;
+}
+
+.reglages-page .btn-save {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+}
+
+.reglages-page .btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Actions backup */
+.backup-actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.backup-btn {
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-align: center;
+}
+
+.backup-btn.export {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.backup-btn.import {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.backup-btn.reset {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.backup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.backup-btn .icon {
+    font-size: 24px;
+}
+
+.backup-btn .info h4 {
+    font-size: 13px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.backup-btn .info p {
+    display: none;
+}
+
+/* Séparateur zone dangereuse */
+.backup-separator {
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    color: #ef4444;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.backup-separator::before,
+.backup-separator::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #fecaca;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 15px;
+    color: #94a3b8;
+    font-size: 13px;
+    font-style: italic;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .reglages-page {
+        padding: 15px 10px;
+    }
+    
+    .reglages-page .header .icon-main {
+        font-size: 40px;
+    }
+    
+    .reglages-page .header h1 {
+        font-size: 20px;
+    }
+    
+    .settings-categories {
+        gap: 10px;
+    }
+    
+    .category-card {
+        padding: 15px 12px;
+    }
+    
+    .category-icon {
+        font-size: 28px;
+    }
+    
+    .settings-panel {
+        padding: 15px;
+    }
+    
+    .backup-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .backup-btn.reset {
+        grid-column: span 1;
+    }
+    
+    .backup-separator {
+        grid-column: span 1;
+    }
+}

@@ -1,0 +1,288 @@
+/* =====================================================
+   IMPRIMER.CSS - Styles pour la page d'impression groupée
+   ===================================================== */
+
+/* Wrapper principal - PAS de contrainte de hauteur */
+.imprimer-wrapper {
+    padding-bottom: 40px;
+}
+
+/* Container des fiches - affichage normal sans contrainte */
+.imprimer-wrapper .fiches-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow: visible !important;
+}
+
+/* Les pages dans le contexte imprimer - pas de hauteur fixe à l'écran */
+.imprimer-wrapper .page {
+    height: auto !important;
+    min-height: 297mm;
+    overflow: visible !important;
+    page-break-inside: avoid;
+}
+
+/* ===== Header compact de la page (visible écran uniquement) ===== */
+.print-header {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.print-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.print-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.print-header .print-icon {
+    font-size: 1.8rem;
+}
+
+.print-header h1 {
+    font-size: 1.1rem;
+    color: white;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Statistiques compactes en ligne */
+.print-stats {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.print-stats .stat {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.print-stats .stat.recherche {
+    background: rgba(245, 87, 108, 0.4);
+}
+
+.print-stats .stat.obeissance {
+    background: rgba(102, 126, 234, 0.4);
+}
+
+.print-stats .stat.divers {
+    background: rgba(16, 185, 129, 0.4);
+}
+
+/* Boutons d'action compacts */
+.print-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.print-actions .btn-action {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.print-actions .btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.print-actions .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.print-actions .btn-primary {
+    background: white;
+    color: #667eea;
+}
+
+.print-actions .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Container des fiches */
+.fiches-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Message aucune fiche */
+.no-fiches {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.no-fiches p {
+    font-size: 1.3rem;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+/* =====================================================
+   STYLES D'IMPRESSION
+   ===================================================== */
+@media print {
+    /* Reset complet pour l'impression */
+    *, *::before, *::after {
+        overflow: visible !important;
+    }
+    
+    html, body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Masquer la navbar et les éléments non imprimables */
+    .navbar-container,
+    .app-footer,
+    .no-print,
+    .print-header {
+        display: none !important;
+    }
+    
+    /* Wrapper sans contrainte */
+    .imprimer-wrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    /* Container des fiches - tout visible */
+    .imprimer-wrapper .fiches-container,
+    .fiches-container {
+        gap: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+        display: block !important;
+    }
+    
+    /* Chaque fiche sur une page A4 */
+    .page {
+        page-break-after: always;
+        page-break-inside: avoid;
+        box-shadow: none !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        padding: 5mm 8mm !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+    
+    .page:last-child {
+        page-break-after: auto;
+    }
+    
+    /* Forcer les couleurs de fond */
+    .header-recherche,
+    .header-obeissance,
+    .header-divers,
+    .section-title {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Zebra striping du tableau */
+    table tbody tr:nth-child(even) {
+        background-color: #f0f4f8 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Lignes guides */
+    .description-box::before,
+    .seance-box::before,
+    .lined-view-2::before,
+    .lined-view-3::before,
+    .lined-view-4::before,
+    .lined-view-10::before {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Checkboxes visibles */
+    input[type="checkbox"] {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media screen and (max-width: 768px) {
+    .print-header {
+        padding: 20px 15px;
+    }
+    
+    .print-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .print-stats {
+        gap: 10px;
+    }
+    
+    .print-stats .stat {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .print-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .print-actions .btn-action {
+        justify-content: center;
+    }
+    
+    .fiches-container {
+        gap: 20px;
+        padding: 0 10px;
+    }
+}

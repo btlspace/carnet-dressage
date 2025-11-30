@@ -1,0 +1,265 @@
+/* Styles spécifiques à la page d'accueil */
+
+.home-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 15px;
+    width: 100%;
+}
+
+.home-page .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: white;
+    margin-bottom: 15px;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.home-page .header .dog-emoji {
+    font-size: 32px;
+}
+
+.home-page .header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    text-shadow: none;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    border-radius: 0;
+}
+
+.home-page .header .dog-name {
+    font-size: 14px;
+    opacity: 0.8;
+    color: white;
+    background: rgba(255,255,255,0.15);
+    padding: 4px 12px;
+    border-radius: 15px;
+}
+
+.home-page .section-title {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 20px 0 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: none !important;
+    padding: 0;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.home-page .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.create-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.create-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 20px 12px;
+    text-decoration: none;
+    text-align: center;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.create-card.recherche {
+    border-color: #f093fb;
+}
+
+.create-card.obeissance {
+    border-color: #667eea;
+}
+
+.create-card.divers {
+    border-color: #10b981;
+}
+
+.create-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.create-card .icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.create-card .add-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #27ae60;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.create-card h3 {
+    font-size: 14px;
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+.create-card p {
+    font-size: 11px;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+/* Outils secondaires */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.tool-card {
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 12px;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tool-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: rgba(255,255,255,0.25);
+}
+
+.tool-card .icon {
+    font-size: 24px;
+}
+
+.tool-card .info h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 1px;
+    color: white;
+}
+
+.tool-card .info p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+}
+
+/* Bouton installer */
+#installBtn {
+    display: none;
+    width: 100%;
+    padding: 15px;
+    background: rgba(255,255,255,0.2);
+    border: 2px dashed rgba(255,255,255,0.5);
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+#installBtn:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .home-page {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .header .dog-emoji {
+        font-size: 48px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .create-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .create-card {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .create-card .icon {
+        font-size: 36px;
+        margin-bottom: 0;
+    }
+    
+    .create-card .add-badge {
+        position: static;
+        margin-left: auto;
+    }
+    
+    .create-card .content {
+        flex: 1;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Masquer à l'impression */
+@media print {
+    .app-footer {
+        display: none !important;
+    }
+}
