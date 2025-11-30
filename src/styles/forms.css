@@ -770,8 +770,102 @@ table .cell-text {
         padding: 12px;
     }
     
-    /* Tables responsive */
-    table {
+    /* Tables - hide on mobile, show card layout instead */
+    table.charges-table {
+        display: none;
+    }
+    
+    /* Mobile card layout for charges */
+    .charges-mobile {
+        display: flex !important;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .charge-card {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 14px;
+        border-left: 4px solid #f5576c;
+    }
+    
+    .charge-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .charge-card-number {
+        background: #f5576c;
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .charge-card-height {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    .charge-card-height label {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .charge-card-height input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .charge-card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .charge-card-row {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .charge-card-row label {
+        font-size: 12px;
+        color: #64748b;
+        font-weight: 500;
+    }
+    
+    .charge-card-row select,
+    .charge-card-row input {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 16px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        background: white;
+    }
+    
+    .charge-card-inline {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    /* Standard tables on mobile (for other tables) */
+    table:not(.charges-table) {
         font-size: 12px;
         display: block;
         overflow-x: auto;
@@ -779,15 +873,15 @@ table .cell-text {
         -webkit-overflow-scrolling: touch;
     }
     
-    table th,
-    table td {
+    table:not(.charges-table) th,
+    table:not(.charges-table) td {
         padding: 6px 4px;
         font-size: 12px;
     }
     
-    table input[type="text"],
-    table input[type="number"],
-    table select {
+    table:not(.charges-table) input[type="text"],
+    table:not(.charges-table) input[type="number"],
+    table:not(.charges-table) select {
         font-size: 14px;
         padding: 6px 4px;
         border: 1px solid #e0e0e0;
@@ -795,7 +889,7 @@ table .cell-text {
         min-width: 60px;
     }
     
-    /* Height checkboxes */
+    /* Height checkboxes in tables */
     .height-checkboxes input[type="radio"] {
         width: 20px;
         height: 20px;
@@ -804,6 +898,11 @@ table .cell-text {
     .height-checkboxes label {
         font-size: 18px;
     }
+}
+
+/* Hide mobile charges layout on desktop */
+.charges-mobile {
+    display: none;
 }
 
 /* Boutons d'action en bas des formulaires */
@@ -972,13 +1071,38 @@ table .cell-text {
 
 @media (max-width: 600px) {
     .fiche-toolbar {
-        padding: 0 10px;
+        padding: 10px;
         gap: 8px;
+        flex-wrap: wrap;
+        margin: 10px auto;
+    }
+    
+    .fiche-toolbar .toolbar-left,
+    .fiche-toolbar .toolbar-right {
+        flex: 1;
+    }
+    
+    .fiche-toolbar .toolbar-center {
+        order: -1;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+    
+    .fiche-toolbar .toolbar-title {
+        font-size: 13px;
+        padding: 6px 14px;
     }
     
     .fiche-toolbar .toolbar-btn {
-        padding: 8px 12px;
+        padding: 10px 14px;
         font-size: 13px;
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .fiche-toolbar .toolbar-btn.btn-cancel {
+        flex: 0 0 auto;
     }
 }
 

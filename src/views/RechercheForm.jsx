@@ -272,7 +272,8 @@ const RechercheForm = () => {
 
           <div className="section">
             <div className="section-title">📦 Charges posées</div>
-            <table>
+            {/* Desktop table layout */}
+            <table className="charges-table">
               <thead>
                 <tr>
                   <th style={{ width: "5%" }}>#</th>
@@ -337,6 +338,77 @@ const RechercheForm = () => {
                 ))}
               </tbody>
             </table>
+            
+            {/* Mobile card layout */}
+            <div className="charges-mobile">
+              {formData.charges.map((charge, i) => (
+                <div key={i} className="charge-card">
+                  <div className="charge-card-header">
+                    <div className="charge-card-number">{i + 1}</div>
+                    <div className="charge-card-height">
+                      <label>
+                        <input 
+                          type="checkbox"
+                          checked={charge.hauteur === "bas"}
+                          onChange={() => handleChargeChange(i, "hauteur", charge.hauteur === "bas" ? "" : "bas")}
+                        />
+                        ↓
+                      </label>
+                      <label>
+                        <input 
+                          type="checkbox"
+                          checked={charge.hauteur === "moyen"}
+                          onChange={() => handleChargeChange(i, "hauteur", charge.hauteur === "moyen" ? "" : "moyen")}
+                        />
+                        ↔
+                      </label>
+                      <label>
+                        <input 
+                          type="checkbox"
+                          checked={charge.hauteur === "haut"}
+                          onChange={() => handleChargeChange(i, "hauteur", charge.hauteur === "haut" ? "" : "haut")}
+                        />
+                        ↑
+                      </label>
+                    </div>
+                  </div>
+                  <div className="charge-card-body">
+                    <div className="charge-card-row">
+                      <label>Substance</label>
+                      <select 
+                        value={charge.substance}
+                        onChange={(e) => handleChargeChange(i, "substance", e.target.value)}
+                      >
+                        <option value="">-- Sélectionner --</option>
+                        {substances.map(sub => (
+                          <option key={sub} value={sub}>{sub}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="charge-card-inline">
+                      <div className="charge-card-row">
+                        <label>Quantité (g)</label>
+                        <input 
+                          type="text"
+                          value={charge.quantite}
+                          onChange={(e) => handleChargeChange(i, "quantite", e.target.value)}
+                          placeholder="--"
+                        />
+                      </div>
+                      <div className="charge-card-row">
+                        <label>Commentaire</label>
+                        <input 
+                          type="text"
+                          value={charge.commentaire}
+                          onChange={(e) => handleChargeChange(i, "commentaire", e.target.value)}
+                          placeholder="--"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="section section-bilan">
