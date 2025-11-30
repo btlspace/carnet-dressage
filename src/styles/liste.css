@@ -526,3 +526,203 @@
         font-size: 12px;
     }
 }
+
+/* ===========================================
+   PWA MOBILE NAVIGATION ENHANCEMENTS
+   =========================================== */
+
+/* Enhanced Mobile Responsive - 375px target */
+@media (max-width: 480px) {
+    /* Page with extra bottom padding for safe area */
+    .liste-page {
+        padding: 8px;
+        padding-bottom: 20px;
+    }
+    
+    /* Header compact */
+    .liste-page .header {
+        margin-bottom: 12px;
+    }
+    
+    .liste-page .header .icon-main {
+        font-size: 28px;
+    }
+    
+    .liste-page .header h1 {
+        font-size: 18px;
+    }
+    
+    /* Enhanced tabs for 375px screens */
+    .tabs {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 14px;
+        padding: 6px;
+        gap: 4px;
+        margin-bottom: 14px;
+        /* Smooth scrolling for tabs */
+        scroll-snap-type: x mandatory;
+        scroll-padding: 6px;
+    }
+    
+    .tab {
+        min-height: 44px;
+        padding: 10px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 10px;
+        scroll-snap-align: start;
+        /* Ensure touch targets */
+        min-width: 70px;
+    }
+    
+    .tab .badge {
+        padding: 2px 6px;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 10px;
+        margin-left: 4px;
+    }
+    
+    /* Enhanced category card for small screens */
+    .category-card {
+        padding: 14px;
+        border-radius: 18px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 12px;
+        margin-bottom: 14px;
+    }
+    
+    .category-icon {
+        font-size: 28px;
+    }
+    
+    .category-title h2 {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    
+    .category-title p {
+        font-size: 12px;
+    }
+    
+    /* Create button optimized */
+    .btn-create {
+        width: 100%;
+        min-height: 48px;
+        padding: 12px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 12px;
+        margin-top: 8px;
+    }
+    
+    /* Fiche cards for small screens */
+    .fiche-list {
+        gap: 12px;
+    }
+    
+    .fiche-card {
+        padding: 14px;
+        border-radius: 12px;
+        border-left-width: 4px;
+    }
+    
+    .fiche-content {
+        gap: 12px;
+    }
+    
+    .fiche-title {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    
+    .fiche-meta {
+        font-size: 12px;
+    }
+    
+    /* Action buttons full touch targets */
+    .fiche-actions {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    
+    .btn-icon {
+        min-height: 48px;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+    
+    /* Quick actions */
+    .quick-actions .btn-print {
+        min-height: 48px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 12px;
+    }
+    
+    /* Empty state compact */
+    .empty-state {
+        padding: 36px 16px;
+    }
+    
+    .empty-state .icon {
+        font-size: 40px;
+        margin-bottom: 14px;
+    }
+    
+    .empty-state p {
+        font-size: 14px;
+        margin-bottom: 18px;
+    }
+    
+    .btn-empty {
+        min-height: 48px;
+        padding: 12px 24px;
+        font-size: 14px;
+        border-radius: 12px;
+    }
+}
+
+/* Touch feedback effects */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .fiche-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .tab:hover {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .tab.active:hover {
+        background: white;
+        color: #2c3e50;
+    }
+    
+    /* Active states for touch */
+    .fiche-card:active {
+        background: #f8fafc;
+        transform: scale(0.99);
+    }
+    
+    .tab:active {
+        transform: scale(0.97);
+        opacity: 0.9;
+    }
+    
+    .btn-icon:active {
+        transform: scale(0.92);
+    }
+    
+    .btn-create:active {
+        transform: scale(0.98);
+    }
+}
