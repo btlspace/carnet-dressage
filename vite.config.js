@@ -10,6 +10,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['*.png', '*.svg', '*.ico'],
       manifest: {
+        id: '/',
         name: 'Carnet de Dressage',
         short_name: 'Carnet Dressage',
         description: 'Application de gestion de carnet de dressage canin',
@@ -67,7 +68,7 @@ export default defineConfig({
           },
           {
             src: '/screenshots/home_pc.png',
-            sizes: '1920x1080',
+            sizes: '1920x877',
             type: 'image/png',
             form_factor: 'wide',
             label: 'Accueil (PC)'

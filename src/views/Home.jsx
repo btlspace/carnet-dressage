@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSettings, isOnboardingDone } from "../db.js";
+import { useInstallPWA } from "../hooks/useInstallPWA.js";
 
 // La vue Accueil du Carnet de Dressage
 const Home = () => {
   const [dogName, setDogName] = useState("Chargement...");
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const { isInstallable, isInstalled, installApp } = useInstallPWA();
 
   useEffect(() => {
     // Vérifier l'onboarding et charger le nom du chien
@@ -111,7 +113,17 @@ const Home = () => {
           </div>
         </Link>
       </div>
-      <button id="installBtn">📱 Installer l'application</button>
+      
+      {/* Bouton d'installation PWA - affiché seulement si installable */}
+      {isInstallable && !isInstalled && (
+        <button className="install-btn" onClick={installApp}>
+          📲 Installer l'application
+        </button>
+      )}
+      
+      {isInstalled && (
+        <p className="installed-message">✅ Application installée</p>
+      )}
     </div>
   );
 };

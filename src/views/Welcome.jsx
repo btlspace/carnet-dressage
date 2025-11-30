@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as DB from '../db.js';
 import { showToast } from '../utils.js';
+import { useInstallPWA } from '../hooks/useInstallPWA.js';
 import '../styles/welcome.css';
 
 /**
@@ -13,6 +14,7 @@ export default function Welcome() {
     const fileInputRef = useRef(null);
     const [step, setStep] = useState(1);
     const [isImporting, setIsImporting] = useState(false);
+    const { isInstallable, isInstalled, installApp } = useInstallPWA();
     const [settings, setSettings] = useState({
         nom_chien: '',
         substances: [''],
@@ -339,6 +341,17 @@ export default function Welcome() {
 
                 {/* Options alternatives */}
                 <div className="welcome-options">
+                    {/* Bouton d'installation PWA */}
+                    {isInstallable && !isInstalled && (
+                        <button className="btn-install" onClick={installApp}>
+                            📲 Installer l'application sur cet appareil
+                        </button>
+                    )}
+                    
+                    {isInstalled && (
+                        <p className="installed-message">✅ Application installée</p>
+                    )}
+
                     <div className="option-divider">
                         <span>ou</span>
                     </div>
