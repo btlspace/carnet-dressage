@@ -38,7 +38,7 @@ html {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: transparent;
-    padding: 60px 0 0;
+    padding-top: 80px !important; /* Espace pour la navbar fixe */
     margin: 0;
     font-size: 12px;
     overflow-x: hidden;
@@ -654,7 +654,7 @@ table .cell-text {
     }
     
     body {
-        padding: 60px 0 0;
+        padding-top: 80px !important; /* Espace suffisant pour la navbar fixe 56px + marge */
         font-size: 14px;
         overflow-x: hidden !important;
         max-width: 100vw !important;

@@ -300,3 +300,14 @@
         display: none !important;
     }
 }
+
+/* Espace pour la navbar fixe sur mobile */
+.with-navbar-space {
+    margin-top: 80px;
+}
+
+@media (min-width: 769px) {
+    .with-navbar-space {
+        margin-top: 0;
+    }
+}
