@@ -160,15 +160,6 @@ const RechercheForm = () => {
     { value: "Spécifique", label: "⭐ Spécifique" }
   ];
 
-  // Get visible charges (only show non-empty + 1 empty for adding)
-  const getVisibleCharges = () => {
-    const lastFilledIndex = formData.charges.findIndex((c, i) => 
-      !c.substance && formData.charges.slice(i).every(ch => !ch.substance)
-    );
-    const visibleCount = lastFilledIndex === -1 ? formData.charges.length : Math.max(lastFilledIndex + 1, 3);
-    return formData.charges.slice(0, Math.min(visibleCount, 10));
-  };
-
   return (
     <>
       {/* Barre d'actions avec titre */}
@@ -196,14 +187,21 @@ const RechercheForm = () => {
           </div>
 
           {/* Wizard steps indicator - visible on mobile */}
-          <div className="wizard-steps-indicator">
-            {[0, 1, 2, 3].map(step => (
-              <div 
-                key={step}
-                className={`wizard-step-dot ${currentStep === step ? 'active' : ''} ${currentStep > step ? 'completed' : ''}`}
-                onClick={() => goToStep(step)}
-              />
-            ))}
+          <div className="wizard-steps-indicator" role="tablist" aria-label="Étapes du formulaire">
+            {[0, 1, 2, 3].map(step => {
+              const stepLabels = ['Informations', 'Charges', 'Description', 'Bilan'];
+              return (
+                <button 
+                  key={step}
+                  type="button"
+                  role="tab"
+                  aria-selected={currentStep === step}
+                  aria-label={`Étape ${step + 1}: ${stepLabels[step]}`}
+                  className={`wizard-step-dot ${currentStep === step ? 'active' : ''} ${currentStep > step ? 'completed' : ''}`}
+                  onClick={() => goToStep(step)}
+                />
+              );
+            })}
           </div>
 
           {/* Step 1: Informations de base */}
@@ -243,6 +241,7 @@ const RechercheForm = () => {
                     <button
                       key={ph.value}
                       type="button"
+                      aria-pressed={formData.plage_horaire === ph.value}
                       className={`toggle-btn ${formData.plage_horaire === ph.value ? 'selected' : ''}`}
                       onClick={() => handlePlageToggle(ph.value)}
                     >
@@ -278,6 +277,7 @@ const RechercheForm = () => {
                     <button
                       key={tr.value}
                       type="button"
+                      aria-pressed={formData.types_recherche.includes(tr.value)}
                       className={`toggle-btn ${formData.types_recherche.includes(tr.value) ? 'selected' : ''}`}
                       onClick={() => handleTypeToggle(tr.value)}
                     >
@@ -405,9 +405,11 @@ const RechercheForm = () => {
                 <div key={i} className="charge-card">
                   <div className="charge-card-header">
                     <div className="charge-card-number">{i + 1}</div>
-                    <div className="height-selector">
+                    <div className="height-selector" role="group" aria-label="Sélection de la hauteur">
                       <button
                         type="button"
+                        aria-label="Hauteur basse"
+                        aria-pressed={charge.hauteur === "bas"}
                         className={`height-btn ${charge.hauteur === "bas" ? 'selected' : ''}`}
                         onClick={() => handleChargeChange(i, "hauteur", charge.hauteur === "bas" ? "" : "bas")}
                       >
@@ -415,6 +417,8 @@ const RechercheForm = () => {
                       </button>
                       <button
                         type="button"
+                        aria-label="Hauteur moyenne"
+                        aria-pressed={charge.hauteur === "moyen"}
                         className={`height-btn ${charge.hauteur === "moyen" ? 'selected' : ''}`}
                         onClick={() => handleChargeChange(i, "hauteur", charge.hauteur === "moyen" ? "" : "moyen")}
                       >
@@ -422,6 +426,8 @@ const RechercheForm = () => {
                       </button>
                       <button
                         type="button"
+                        aria-label="Hauteur haute"
+                        aria-pressed={charge.hauteur === "haut"}
                         className={`height-btn ${charge.hauteur === "haut" ? 'selected' : ''}`}
                         onClick={() => handleChargeChange(i, "hauteur", charge.hauteur === "haut" ? "" : "haut")}
                       >

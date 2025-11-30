@@ -934,6 +934,9 @@ table .cell-text {
     background: #e2e8f0;
     transition: all 0.3s ease;
     cursor: pointer;
+    border: none;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .wizard-step-dot.active {
