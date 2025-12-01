@@ -101,6 +101,15 @@ export default function Liste() {
         return meta.join(' • ');
     };
 
+    // Trier les fiches par date décroissante (date de la fiche, pas de création)
+    const sortByDate = (fichesList) => {
+        return [...fichesList].sort((a, b) => {
+            const dateA = a.date || a.date_debut || '';
+            const dateB = b.date || b.date_debut || '';
+            return dateB.localeCompare(dateA);
+        });
+    };
+
     // Obtenir toutes les fiches triées par date décroissante
     const getAllFichesSorted = () => {
         const all = [
@@ -108,12 +117,7 @@ export default function Liste() {
             ...fiches.obeissance.map(f => ({ ...f, _type: 'obeissance' })),
             ...fiches.divers.map(f => ({ ...f, _type: 'divers' }))
         ];
-
-        return all.sort((a, b) => {
-            const dateA = a.date || a.date_debut || '';
-            const dateB = b.date || b.date_debut || '';
-            return dateB.localeCompare(dateA);
-        });
+        return sortByDate(all);
     };
 
     // Rendu d'une carte de fiche
@@ -163,7 +167,7 @@ export default function Liste() {
     const renderPanel = (category, categoryTitle, categoryIcon, categoryClass, createUrl) => {
         const categoryFiches = category === 'all'
             ? getAllFichesSorted()
-            : fiches[category] || [];
+            : sortByDate(fiches[category] || []);
 
         const isEmpty = categoryFiches.length === 0;
 
