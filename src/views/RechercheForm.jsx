@@ -272,7 +272,7 @@ const RechercheForm = () => {
 
           <div className="section">
             <div className="section-title">📦 Charges posées</div>
-            <table>
+            <table className="charges-table">
               <thead>
                 <tr>
                   <th style={{ width: "5%" }}>#</th>
@@ -285,8 +285,8 @@ const RechercheForm = () => {
               <tbody>
                 {formData.charges.map((charge, i) => (
                   <tr key={i}>
-                    <td className="row-number">{i + 1}</td>
-                    <td>
+                    <td className="row-number" data-label="#">{i + 1}</td>
+                    <td data-label={`Substance ${i + 1}`}>
                       <select 
                         value={charge.substance}
                         onChange={(e) => handleChargeChange(i, "substance", e.target.value)}
@@ -297,14 +297,14 @@ const RechercheForm = () => {
                         ))}
                       </select>
                     </td>
-                    <td>
+                    <td data-label="Quantité">
                       <input 
                         type="text"
                         value={charge.quantite}
                         onChange={(e) => handleChargeChange(i, "quantite", e.target.value)}
                       />
                     </td>
-                    <td>
+                    <td data-label="Hauteur">
                       <div className="height-checkboxes">
                         <input 
                           type="checkbox"
@@ -326,7 +326,7 @@ const RechercheForm = () => {
                         <label>↑</label>
                       </div>
                     </td>
-                    <td>
+                    <td data-label="Commentaire">
                       <input 
                         type="text"
                         value={charge.commentaire}

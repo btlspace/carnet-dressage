@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import * as DB from '../db.js';
 import { showToast } from '../utils.js';
+import { version } from '../../package.json';
 import '../styles/reglages.css';
 
 /**
@@ -452,6 +453,11 @@ export default function Reglages() {
                             </div>
                         </button>
                     </div>
+                </div>
+
+                {/* Version de l'application */}
+                <div className="app-version">
+                    <span>Carnet de Dressage v{version}</span>
                 </div>
             </div>
         </div>
