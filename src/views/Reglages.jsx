@@ -28,7 +28,7 @@ export default function Reglages() {
                 nom_chien: loaded.nom_chien || '',
                 substances: loaded.substances || [],
                 poseurs: loaded.poseurs || [],
-                onboarding_done: loaded.onboarding_done !== undefined ? loaded.onboarding_done : true
+                onboarding_done: loaded.onboarding_done ?? true
             });
         }
     };
