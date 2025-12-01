@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getSettings, isOnboardingDone } from "../db.js";
+import { getSettings } from "../db.js";
 import { useInstallPWA } from "../hooks/useInstallPWA.js";
 
 // La vue Accueil du Carnet de Dressage
@@ -14,22 +14,23 @@ const Home = () => {
     // Vérifier l'onboarding et charger le nom du chien
     const checkAndLoad = async () => {
       try {
+        // Charger les paramètres
+        const settings = await getSettings();
+        
         // Vérifier si l'onboarding a été fait
-        const onboardingDone = await isOnboardingDone();
-        if (!onboardingDone) {
-          navigate("/welcome");
+        // Ne rediriger vers /welcome que si onboarding_done est explicitement false
+        if (settings.onboarding_done !== true) {
+          navigate("/welcome", { replace: true });
           return;
         }
 
-        // Charger les paramètres
-        const settings = await getSettings();
         // Afficher "Mon chien" si aucun nom n'est configuré
         setDogName(settings.nom_chien?.trim() || "Mon chien");
       } catch (error) {
         console.error("Erreur chargement settings:", error);
-        // En cas d'erreur (DB vierge), rediriger vers Welcome
-        navigate("/welcome");
-        return;
+        // En cas d'erreur de la DB, ne pas rediriger automatiquement
+        // Afficher un nom par défaut et continuer
+        setDogName("Mon chien");
       }
       setIsLoading(false);
     };
