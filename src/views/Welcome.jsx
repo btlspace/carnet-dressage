@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as DB from '../db.js';
 import { showToast } from '../utils.js';
@@ -14,12 +14,31 @@ export default function Welcome() {
     const fileInputRef = useRef(null);
     const [step, setStep] = useState(1);
     const [isImporting, setIsImporting] = useState(false);
+    const [isChecking, setIsChecking] = useState(true);
     const { isInstallable, isInstalled, installApp } = useInstallPWA();
     const [settings, setSettings] = useState({
         nom_chien: '',
         substances: [''],
         poseurs: ['']
     });
+
+    // Vérifier si l'onboarding a déjà été fait
+    useEffect(() => {
+        const checkOnboarding = async () => {
+            try {
+                const existingSettings = await DB.getSettings();
+                if (existingSettings.onboarding_done === true) {
+                    // Onboarding déjà fait, rediriger vers Home
+                    navigate('/', { replace: true });
+                    return;
+                }
+            } catch (error) {
+                console.error('Erreur vérification onboarding:', error);
+            }
+            setIsChecking(false);
+        };
+        checkOnboarding();
+    }, [navigate]);
 
     // Gestion du nom du chien
     const handleDogName = (e) => {
@@ -209,6 +228,18 @@ export default function Welcome() {
             showToast('Erreur lors du chargement démo', 'error');
         }
     };
+
+    // Afficher un écran de chargement pendant la vérification de l'onboarding
+    if (isChecking) {
+        return (
+            <div className="welcome-page">
+                <div className="welcome-container" style={{ textAlign: 'center' }}>
+                    <span style={{ fontSize: '48px' }}>🐕</span>
+                    <p style={{ color: 'white', marginTop: '20px' }}>Chargement...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="welcome-page">
