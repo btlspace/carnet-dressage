@@ -466,6 +466,27 @@
     }
 }
 
+/* Override forms.css mobile styles for list-item inputs (badges/chips) */
+@media screen and (max-width: 768px) {
+    .settings-panel form .list-item input[type="text"] {
+        border: none !important;
+        padding: 0 !important;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+        background: transparent !important;
+        color: white !important;
+        width: auto !important;
+        min-width: 60px !important;
+        max-width: 120px !important;
+        border-radius: 0 !important;
+    }
+    
+    .settings-panel form .list-item input[type="text"]:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
 /* Version de l'application */
 .app-version {
     text-align: center;
