@@ -1143,6 +1143,42 @@ table .cell-text {
         margin: 0 !important;
         padding: 0 !important;
     }
+    
+    /* =============================================
+       FORMULAIRE OBÉISSANCE - Optimisation mobile
+       ============================================= */
+    
+    /* Sélecteur de semaine - empilé sur mobile */
+    form .week-info.obeissance {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+        padding: 12px !important;
+    }
+    
+    form .week-info.obeissance .week-display {
+        text-align: center !important;
+        font-size: 13px !important;
+        white-space: normal !important;
+    }
+    
+    form .week-info.obeissance .week-selector-input {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Sections séances compactes */
+    form .seance-box {
+        min-height: 80px !important;
+        height: auto !important;
+    }
+    
+    form .seance-box textarea {
+        min-height: 70px !important;
+        height: auto !important;
+    }
 }
 
 /* Boutons d'action en bas des formulaires */
