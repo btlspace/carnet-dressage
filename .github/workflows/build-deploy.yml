@@ -3,7 +3,7 @@ name: Build & Deploy Vite PWA
 on:
   push:
     branches:
-      - main
+      - master
     tags:
       - 'v*'   # optionnel : déclencher aussi sur les tags v1.0.0, etc.
 
@@ -28,13 +28,13 @@ jobs:
         run: npm run build
 
       - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps           # Infomaniak supporte FTPS, garde ça
           port: 21
-          local-dir: ./dist        # dossier généré par Vite
+          local-dir: ./dist/       # dossier généré par Vite (avec slash final)
           server-dir: /            # racine FTP de ton hébergement
           dangerous-clean-slate: false  # true = efface tout avant upload
