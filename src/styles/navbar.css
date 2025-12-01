@@ -155,8 +155,8 @@
     display: none;
 }
 
-/* Responsive - Mobile */
-@media (max-width: 768px) {
+/* Responsive - Tablettes et Mobile (jusqu'à 1024px) */
+@media (max-width: 1024px) {
     .app-navbar {
         height: 56px;
         padding: 8px 15px;
@@ -214,7 +214,7 @@
         font-size: 18px;
     }
     
-    /* Afficher séparateurs et titres sur mobile */
+    /* Afficher séparateurs et titres sur mobile/tablette */
     .nav-separator {
         display: block;
         width: 100%;

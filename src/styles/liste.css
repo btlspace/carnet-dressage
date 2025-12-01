@@ -403,7 +403,7 @@
         color: white;
     }
 
-    /* Onglets - Pills horizontaux */
+    /* Onglets - Pills horizontaux avec indicateur de scroll */
     .tabs {
         display: flex;
         gap: 8px;
@@ -413,6 +413,10 @@
         overflow-x: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        position: relative;
+        /* Masque de dégradé des deux côtés */
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     }
     
     .tabs::-webkit-scrollbar {
@@ -428,6 +432,23 @@
         background: rgba(255,255,255,0.2);
         color: white;
         white-space: nowrap;
+        /* Animation subtile au chargement */
+        animation: tabHint 1.5s ease-out;
+    }
+    
+    @keyframes tabHint {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(-5px); }
+        40% { transform: translateX(0); }
+    }
+    
+    /* Premier et dernier onglet avec marge pour voir le dégradé */
+    .tab:first-child {
+        margin-left: 10px;
+    }
+    
+    .tab:last-child {
+        margin-right: 10px;
     }
     
     .tab .badge {
