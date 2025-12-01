@@ -12,7 +12,8 @@ export default function Reglages() {
     const [settings, setSettings] = useState({
         nom_chien: '',
         substances: [],
-        poseurs: []
+        poseurs: [],
+        onboarding_done: true
     });
     const fileInputRef = useRef(null);
 
@@ -26,7 +27,8 @@ export default function Reglages() {
             setSettings({
                 nom_chien: loaded.nom_chien || '',
                 substances: loaded.substances || [],
-                poseurs: loaded.poseurs || []
+                poseurs: loaded.poseurs || [],
+                onboarding_done: loaded.onboarding_done !== undefined ? loaded.onboarding_done : true
             });
         }
     };
