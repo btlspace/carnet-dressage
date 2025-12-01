@@ -466,7 +466,11 @@
     }
 }
 
-/* Override forms.css mobile styles for list-item inputs (badges/chips) */
+/* 
+ * Override forms.css mobile styles for list-item inputs (badges/chips).
+ * Uses 768px breakpoint to match forms.css mobile media query.
+ * Uses !important to override forms.css !important declarations.
+ */
 @media screen and (max-width: 768px) {
     .settings-panel form .list-item input[type="text"] {
         border: none !important;
