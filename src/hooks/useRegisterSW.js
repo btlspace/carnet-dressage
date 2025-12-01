@@ -9,6 +9,7 @@ export function useRegisterSW() {
     const [needRefresh, setNeedRefresh] = useState(false);
     const [offlineReady, setOfflineReady] = useState(false);
     const updateSWRef = useRef(null);
+    const intervalIdRef = useRef(null);
 
     useEffect(() => {
         const updateServiceWorker = registerSW({
@@ -21,7 +22,7 @@ export function useRegisterSW() {
             onRegisteredSW(swUrl, registration) {
                 // Vérifier périodiquement les mises à jour (toutes les heures)
                 if (registration) {
-                    setInterval(() => {
+                    intervalIdRef.current = setInterval(() => {
                         registration.update();
                     }, 60 * 60 * 1000);
                 }
@@ -31,7 +32,10 @@ export function useRegisterSW() {
         updateSWRef.current = updateServiceWorker;
 
         return () => {
-            // Cleanup if needed
+            // Nettoyer l'intervalle de vérification des mises à jour
+            if (intervalIdRef.current) {
+                clearInterval(intervalIdRef.current);
+            }
         };
     }, []);
 
